@@ -1,0 +1,36 @@
+@import '../../styles/vars';
+
+.root {
+  background-color: $black;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  background-color: pink;
+  padding-bottom: 20px;
+}
+.main {
+  background-color: $dark-grey;
+  height: 500px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+  margin: 0 50px;
+}
+.details {
+  background-color: olive;
+}
+.awards {
+  background-color: aquamarine;
+}
+.ratings {
+  background-color: goldenrod;
+}
+.rating {
+  background-color: lightslategrey;
+}

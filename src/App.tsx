@@ -1,56 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { useEffect } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import MoviesList from './views/moviesList/MoviesList';
+import MovieDetails from './views/movieDetails/MovieDetails';
+import getMovies from './helpers/getMovies';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMovies } from './store/reducers/appSlice/appSlice';
+import { setIsLoading } from './store/reducers/commonSlice/commonSlice';
+import IState from './types/state';
+import { setPageNumber } from './store/reducers/appSlice/appSlice';
 
 function App() {
+  const dispatch = useDispatch();
+  const { movies, pageNumber, searchQuery } = useSelector(
+    (state: IState) => state.app
+  );
+
+  useEffect(() => {
+    if (!movies || movies.length === 0) {
+      (async () => {
+        dispatch(setPageNumber(1));
+        await getMovies({ query: searchQuery, pageNumber })
+          .then(({ data }) => {
+            dispatch(setMovies(data.Search));
+            dispatch(setPageNumber((pageNumber as number) + 1));
+          })
+          .finally(() => {
+            dispatch(setIsLoading(false));
+          });
+      })();
+    }
+  }, [movies, pageNumber, setMovies, setPageNumber, setIsLoading, searchQuery]);
+
+  if (!movies || movies.length === 0) {
+    setIsLoading(true);
+    return null;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <MoviesList />
+          </Route>
+          <Route exact path="/movie/:id/details/:slug">
+            <MovieDetails />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

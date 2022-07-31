@@ -1,0 +1,49 @@
+@import '../../styles/vars';
+
+.root {
+  width: 100%;
+  min-height: 100vh;
+  color: #fff;
+  background-color: $black;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.headingWrapper {
+  padding-left: 10px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 0;
+    width: 3px;
+    height: 75%;
+    background-color: $accent-color;
+  }
+}
+
+.heading {
+  font-size: 48px;
+  margin: 0;
+  position: relative;
+}
+
+.subheading {
+  font-size: 16px;
+  margin: 0;
+}
+
+.moviesWrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.loaderWrapper {
+  width: 100%;
+  padding-bottom: 20px;
+}

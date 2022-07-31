@@ -1,0 +1,35 @@
+@import '../../styles/vars';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+  margin: 20px 10px;
+  font-size: 18px;
+  color: $white;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.image {
+  width: 160px;
+  height: 250px;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.year {
+  margin-top: 5px;
+}
+
+.stars {
+  margin-top: 5px;
+  color: $accent-color;
+}
+
+.title {
+}

@@ -1,0 +1,67 @@
+@import '../../styles/vars';
+
+.root {
+  width: 100%;
+  background-color: $black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 10px 0;
+
+  @media #{$tablet-768-up} {
+    flex-direction: row;
+    padding: 10px;
+  }
+}
+
+.logo {
+  color: $white;
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 10px;
+
+  @media #{$tablet-768-up} {
+    font-size: 28px;
+    flex: 1;
+  }
+}
+
+.form {
+  width: 100%;
+  @media #{$tablet-768-up} {
+    flex: 1;
+  }
+}
+
+.input {
+  padding: 15px 30px;
+  border-radius: 30px;
+  border: 1px solid $accent-color;
+  background: $black;
+  color: $white;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+
+  &:hover,
+  &:active,
+  &:focus {
+    border: 1px solid $accent-color;
+  }
+}
+
+.invisible {
+  display: none;
+  flex: 1;
+  @media #{$desktop-1366-up} {
+    display: block;
+  }
+}
+
+.back {
+  font-size: 16px;
+  color: #b7f;
+  text-decoration: none;
+}
